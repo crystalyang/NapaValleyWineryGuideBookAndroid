@@ -9,8 +9,64 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.android.crystal.wineryguidebook.MainActivity">
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/button"
+        android:layout_marginBottom="69dp"
+        android:layout_above="@+id/btnAllList"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Search" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="nearby"
+        android:id="@+id/btnNearby"
+        android:layout_alignTop="@+id/button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="onClickList" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All wineries"
+        android:id="@+id/btnAllList"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onClickList" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="my account"
+        android:id="@+id/btnAccount"
+        android:layout_alignBottom="@+id/btnAllList"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="onClickMyAccount" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="93dp"
+        android:layout_alignRight="@+id/btnNearby"
+        android:layout_alignEnd="@+id/btnNearby"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:hint="i.e: name, wine type"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:id="@+id/btnSearch"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true"
+        android:nestedScrollingEnabled="true" />
 </RelativeLayout>

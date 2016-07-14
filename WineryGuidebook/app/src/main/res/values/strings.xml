@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WineryGuidebook</string>
+    <string name="title_activity_winery_map">Map</string>
 </resources>
