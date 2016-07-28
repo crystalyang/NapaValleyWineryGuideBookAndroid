@@ -18,7 +18,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class WineryListActivity extends AppCompatActivity {
 
-    DBHandler dbHandler;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -30,7 +30,7 @@ public class WineryListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_winery_list);
 
-        dbHandler = new DBHandler(this, null, null, 1);
+
 
         //to do: get extra to query db maybe not string
 //        Bundle extras = getIntent().getExtras();

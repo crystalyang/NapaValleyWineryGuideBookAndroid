@@ -21,9 +21,9 @@ public class WineryService {
     private final String TAG = getClass().getSimpleName();
 
     //Constructor
-    public WineryService(String apiKey){this.API_KEY = String.valueOf(R.string.google_maps_key);}
+    public WineryService(){this.API_KEY = "AIzaSyAy1kwW3Ja8NkKBCrMftJsrHwP7-IxtJ4U";}
 
-    public ArrayList<Winery> findCafes(double latitude, double longitude, String placeSpacification){
+    public ArrayList<Winery> findWineries(double latitude, double longitude, String placeSpacification){
         String urlString = makeUrl(latitude, longitude);
         try{
             String json = getJSON(urlString);
@@ -59,10 +59,11 @@ public class WineryService {
         urlString.append(Double.toString(latitude));
         urlString.append(",");
         urlString.append(Double.toString(longitude));
-        urlString.append("&radius=3000");
+        urlString.append("&radius=10000");
         urlString.append("&types=winery");
         urlString.append("&sensor=false&key="+ API_KEY);
 
+        System.out.println(urlString.toString());
         return urlString.toString();
     }
 

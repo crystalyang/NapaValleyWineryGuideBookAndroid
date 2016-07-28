@@ -46,10 +46,10 @@ public class ReviewListActivity extends AppCompatActivity {
             case R.id.action_back:
                 startActivity(new Intent(this,MainActivity.class)); //back to main activity
                 return true;
-            case R.id.action_add:
-                startActivity(new Intent(this,AddReviewActivity.class)); //to do: create AddReviewAcitivity
-                //i.putExtra(); to do add winery id here
-                return true;
+//            case R.id.action_add:
+//                startActivity(new Intent(this,AddReviewActivity.class)); //to do: create AddReviewAcitivity
+//                //i.putExtra(); to do add winery id here
+//                return true;
         }
         return super.onOptionsItemSelected(item);
     }

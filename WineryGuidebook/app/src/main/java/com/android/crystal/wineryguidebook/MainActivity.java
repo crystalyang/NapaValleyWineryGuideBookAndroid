@@ -1,16 +1,27 @@
 package com.android.crystal.wineryguidebook;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 
+import com.google.android.gms.maps.model.LatLng;
+
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+    public ArrayList<Winery> WineryList;
+    private LatLng currentLoc = new LatLng(38.2891543, -122.3763611);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        new getWineries(this, "").execute();
     }
 
 //    //add menu bar
@@ -37,6 +48,50 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //        return super.onOptionsItemSelected(item);
 //    }
+
+
+
+
+    private class getWineries extends AsyncTask<String, String,  ArrayList<Winery>> {
+        private ProgressDialog dialog;
+        private Context context;
+        private String cafes;
+
+        public getWineries(Activity context, String cafes){
+            this.context = context;
+            this.cafes = cafes;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Winery> result) {
+            super.onPostExecute(result);
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
+//            cafesList = result;
+//            Size = result.size();
+//
+//            mAdapter = new RecyclerViewAdapter(cafesList,Size);
+//            mRecyclerView.setAdapter(mAdapter);
+        }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog = new ProgressDialog(context);
+            dialog.setCancelable(false);
+            dialog.setMessage("Loading..");
+            dialog.isIndeterminate();
+            dialog.show();
+
+        }
+        @Override
+        protected ArrayList<Winery> doInBackground(String... arg0) {
+            WineryService service = new WineryService();
+            ArrayList<Winery> WineryList = service.findWineries(currentLoc.latitude, currentLoc.longitude, "cafe");
+
+            return WineryList;
+        }
+    }
 
     public void onClickList(View view){
         //to do: add code for getting current location http://stackoverflow.com/questions/17591147/how-to-get-current-location-in-android
