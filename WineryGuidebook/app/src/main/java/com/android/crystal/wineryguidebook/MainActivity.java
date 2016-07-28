@@ -7,14 +7,20 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public ArrayList<Winery> WineryList;
+    private final String TAG = getClass().getSimpleName();
     private LatLng currentLoc = new LatLng(38.2891543, -122.3763611);
 
     @Override
@@ -22,6 +28,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         new getWineries(this, "").execute();
+
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                // TODO: Get info about the selected place.
+                Log.i(TAG, "Place: " + place.getName());
+                System.out.print(place.getName());
+            }
+
+            @Override
+            public void onError(Status status) {
+                // TODO: Handle the error.
+                Log.i(TAG, "An error occurred: " + status);
+            }
+        });
+
     }
 
 //    //add menu bar
@@ -48,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //        return super.onOptionsItemSelected(item);
 //    }
-
 
 
 

@@ -60,7 +60,7 @@ public class WineryService {
         urlString.append(",");
         urlString.append(Double.toString(longitude));
         urlString.append("&radius=10000");
-        urlString.append("&types=winery");
+        urlString.append("&types=vineyards|wineries");
         urlString.append("&sensor=false&key="+ API_KEY);
 
         System.out.println(urlString.toString());
