@@ -33,7 +33,6 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
         // Locate the viewpager in activity_main.xml
         viewPager = (ViewPager) findViewById(R.id.pager);
-
         // Set the ViewPagerAdapter into ViewPager
         viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
 
@@ -129,21 +128,5 @@ public class MainActivity extends FragmentActivity {
             return WineryList;
         }
     }
-//
-//    public void onClickList(View view){
-//        //to do: add code for getting current location http://stackoverflow.com/questions/17591147/how-to-get-current-location-in-android
-//
-//        Intent i = new Intent(this, WineryListActivity.class);
-//        //i.putExtra(); //add location info for db query
-//        startActivity(i);
-//    }
-//
-//    public void onClickMyAccount(View view){
-//        Intent i = new Intent(this, MyAccountActivity.class);
-//        startActivity(i);
-//    }
-
-
-
 
 }

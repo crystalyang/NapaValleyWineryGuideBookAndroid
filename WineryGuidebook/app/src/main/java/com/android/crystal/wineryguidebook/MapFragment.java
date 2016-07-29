@@ -77,5 +77,4 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mMapView.addMarker(new MarkerOptions().position(current).title("current location"));
         mMapView.moveCamera(CameraUpdateFactory.newLatLng(current));
     }
-
 }

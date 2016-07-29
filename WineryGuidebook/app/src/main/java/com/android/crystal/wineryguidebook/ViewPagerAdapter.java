@@ -12,7 +12,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     ArrayList<Winery> wineryList;
     Bundle bundle;
 
-    final int PAGE_COUNT = 1;
+    final int PAGE_COUNT = 2;
     // Tab Titles
     private String tabtitles[] = new String[] { "Map", "List"};
     Context context;
@@ -36,9 +36,13 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                 MapFragment fragmenttab1 = new MapFragment();
                 return fragmenttab1;
 
-//            case 1:
-//                ListFragment fragmenttab2 = new ListFragment();
-//                return fragmenttab2;
+            case 1:
+                ListFragment fragmenttab2 = new ListFragment();
+                return fragmenttab2;
+
+//            case 2:
+//                ListFragment fragmenttab3 = new ListFragment();
+//                return fragmenttab3;
 
         }
         return null;
