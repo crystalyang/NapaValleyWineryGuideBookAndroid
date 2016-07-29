@@ -1,5 +1,8 @@
 package com.android.crystal.wineryguidebook;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -8,7 +11,8 @@ import java.util.Comparator;
 /**
  * Created by Crystal on 7/27/16.
  */
-public class Winery implements Comparator<Winery>{
+public class Winery implements Comparator<Winery>, Parcelable{
+    public  Winery(){}
     private String id;
     private String icon;
     private String name;
@@ -60,5 +64,44 @@ public class Winery implements Comparator<Winery>{
     public int compare(Winery o1, Winery o2) {
         return o1.getRate().compareTo(o2.getRate());
     }
+
+    public Winery(Parcel in){
+        String[] data = new String[5];
+
+        in.readStringArray(data);
+        this.id = data[0];
+        this.icon = data[1];
+        this.name = data[2];
+        this.vicinity = data[3];
+        this.rate = Double.parseDouble(data[4]);
+        this.latitude = Double.parseDouble(data[5]);
+        this.longitude = Double.parseDouble(data[6]);
+
+    }
+
+//    @Оverride
+    public int describeContents(){
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeStringArray(new String[] {this.id,
+                this.icon,
+                this.name,
+        this.vicinity,
+        this.rate.toString(),
+        this.latitude.toString(),
+        this.longitude.toString()});
+    }
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public Winery createFromParcel(Parcel in) {
+            return new Winery(in);
+        }
+
+        public Winery[] newArray(int size) {
+            return new Winery[size];
+        }
+    };
 
 }

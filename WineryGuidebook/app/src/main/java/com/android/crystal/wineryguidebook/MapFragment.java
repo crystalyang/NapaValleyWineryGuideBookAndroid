@@ -3,6 +3,7 @@ package com.android.crystal.wineryguidebook;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -26,6 +28,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapFragment extends Fragment implements OnMapReadyCallback {
     private final String TAG = getClass().getSimpleName();
     private GoogleMap mMapView;
+    private SupportMapFragment fragment;
 
 
     public MapFragment() {
@@ -36,8 +39,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        final RelativeLayout mRelativeLayout = (RelativeLayout) inflater.inflate(
-//                R.layout.googlePLacesLayout, container, false);
         final RelativeLayout mRelativeLayout = (RelativeLayout) inflater.inflate(
                 R.layout.fragment_map, container, false);
 
@@ -57,6 +58,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 Log.i(TAG, "An error occurred: " + status);
             }
         });
+
+        FragmentManager fm = getChildFragmentManager();
+        fragment = (SupportMapFragment) fm.findFragmentById(R.id.map);
+        if (fragment == null) {
+            fragment = SupportMapFragment.newInstance();
+            fm.beginTransaction().replace(R.id.map, fragment).commit();
+        }
+        fragment.getMapAsync(this);
 
     return mRelativeLayout;
     }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Parcelable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -24,18 +25,19 @@ public class MainActivity extends FragmentActivity {
     public ArrayList<Winery> WineryList;
     private final String TAG = getClass().getSimpleName();
     private LatLng currentLoc = new LatLng(38.2891543, -122.3763611);
+    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Locate the viewpager in activity_main.xml
-        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager = (ViewPager) findViewById(R.id.pager);
 
         // Set the ViewPagerAdapter into ViewPager
         viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
 
-       // new getWineries(this, "").execute();
+       new getWineries(this, "").execute();
 //
 //        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
 //                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
@@ -84,46 +86,49 @@ public class MainActivity extends FragmentActivity {
 
 
 
-//    private class getWineries extends AsyncTask<String, String,  ArrayList<Winery>> {
-//        private ProgressDialog dialog;
-//        private Context context;
-//        private String cafes;
+    private class getWineries extends AsyncTask<String, String,  ArrayList<Winery>> {
+        private ProgressDialog dialog;
+        private Context context;
+        private String cafes;
+
+        public getWineries(Activity context, String cafes){
+            this.context = context;
+            this.cafes = cafes;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Winery> result) {
+            super.onPostExecute(result);
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
+//            Bundle bundle = new Bundle();
+//            bundle.putParcelableArrayList("WineryList", result);
+//            viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()),bundle);
+//            cafesList = result;
+//            Size = result.size();
 //
-//        public getWineries(Activity context, String cafes){
-//            this.context = context;
-//            this.cafes = cafes;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(ArrayList<Winery> result) {
-//            super.onPostExecute(result);
-//            if (dialog.isShowing()) {
-//                dialog.dismiss();
-//            }
-////            cafesList = result;
-////            Size = result.size();
-////
-////            mAdapter = new RecyclerViewAdapter(cafesList,Size);
-////            mRecyclerView.setAdapter(mAdapter);
-//        }
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//            dialog = new ProgressDialog(context);
-//            dialog.setCancelable(false);
-//            dialog.setMessage("Loading..");
-//            dialog.isIndeterminate();
-//            dialog.show();
-//
-//        }
-//        @Override
-//        protected ArrayList<Winery> doInBackground(String... arg0) {
-//            WineryService service = new WineryService();
-//            ArrayList<Winery> WineryList = service.findWineries(currentLoc.latitude, currentLoc.longitude, "cafe");
-//
-//            return WineryList;
-//        }
-//    }
+//            mAdapter = new RecyclerViewAdapter(cafesList,Size);
+//            mRecyclerView.setAdapter(mAdapter);
+        }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog = new ProgressDialog(context);
+            dialog.setCancelable(false);
+            dialog.setMessage("Loading..");
+            dialog.isIndeterminate();
+            dialog.show();
+
+        }
+        @Override
+        protected ArrayList<Winery> doInBackground(String... arg0) {
+            WineryService service = new WineryService();
+            ArrayList<Winery> WineryList = service.findWineries(currentLoc.latitude, currentLoc.longitude, "cafe");
+
+            return WineryList;
+        }
+    }
 //
 //    public void onClickList(View view){
 //        //to do: add code for getting current location http://stackoverflow.com/questions/17591147/how-to-get-current-location-in-android
