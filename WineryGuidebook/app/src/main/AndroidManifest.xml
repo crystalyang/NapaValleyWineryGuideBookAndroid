@@ -27,7 +27,8 @@
         <activity android:name=".WineryListActivity" />
         <activity android:name=".MyAccountActivity" />
         <activity android:name=".ReviewListActivity" />
-        <!--<activity android:name=".AddReviewActivity" />-->
+        <!-- <activity android:name=".AddReviewActivity" /> -->
+
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -43,11 +44,16 @@
 
         <activity
             android:name=".WineryMapActivity"
-            android:label="@string/title_activity_winery_map"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+            android:label="@string/title_activity_winery_map" />
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".WineryDetailActivity"></activity>
     </application>
 
 </manifest>

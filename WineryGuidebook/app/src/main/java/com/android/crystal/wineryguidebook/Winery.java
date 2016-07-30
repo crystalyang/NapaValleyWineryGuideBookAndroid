@@ -20,6 +20,7 @@ public class Winery implements Comparator<Winery>, Parcelable{
     private Double rate;
     private Double latitude;
     private Double longitude;
+    private String phone;
     //need to add reviews later
 
     public String getId(){return id;}
@@ -36,6 +37,8 @@ public class Winery implements Comparator<Winery>, Parcelable{
     public void setVicinity(String vicinity){this.vicinity = vicinity;}
     public Double getRate(){return rate;}
     public void setRate(String rate){this.rate = Double.parseDouble(rate);}
+    public String getPhone(){return phone;}
+    public void setPhone(String phone){this.phone = phone;}
 
     static Winery jsonToPontoFreferencia(JSONObject pontoFeferencia) {
         try {
