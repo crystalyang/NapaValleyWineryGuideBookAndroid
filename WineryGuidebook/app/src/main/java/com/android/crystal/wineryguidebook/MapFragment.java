@@ -18,18 +18,22 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MapFragment extends Fragment implements OnMapReadyCallback {
+public class MapFragment extends Fragment implements OnMapReadyCallback, getWineries.TaskListener {
     private final String TAG = getClass().getSimpleName();
     private GoogleMap mMapView;
     private SupportMapFragment fragment;
-
+    private ArrayList<Winery> wineryList = new ArrayList<>();
 
     public MapFragment() {
         // Required empty public constructor
@@ -71,10 +75,57 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        super.onActivityCreated(savedInstanceState);
+
+
+        if(wineryList.size() <= 0 ) {
+            getWineries task = new getWineries(getActivity());
+            task.addListener(this);
+            task.execute();
+        }else{
+            setDataList(wineryList);
+        }
+    }
+
+    @Override
     public void onMapReady(GoogleMap googleMap) {
         mMapView = googleMap;
         LatLng current = new LatLng(37.3355457, -121.882949);
         mMapView.addMarker(new MarkerOptions().position(current).title("current location"));
         mMapView.moveCamera(CameraUpdateFactory.newLatLng(current));
     }
+
+    @Override
+    public void onResultAvailable(ArrayList<Winery> result){
+        setDataList(result);
+        }
+
+    public void setDataList(ArrayList<Winery> result){
+        wineryList = result;
+        for (int i = 0; i < wineryList.size(); i++) {
+            //String cafeName = wineryList.get(i).getName();
+
+            mMapView.addMarker(new MarkerOptions()
+                    .title(wineryList.get(i).getName())
+                    .position(
+                            new LatLng(wineryList.get(i).getLatitude(), wineryList
+                                    .get(i).getLongitude()))
+                    .icon(BitmapDescriptorFactory
+                            .fromResource(R.drawable.marker))
+                    .snippet(wineryList.get(i).getVicinity()));
+        }
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(new LatLng(result.get(0).getLatitude(), result
+                        .get(0).getLongitude()))
+                .zoom(14)
+                .tilt(30)
+                .build();
+        mMapView.animateCamera(CameraUpdateFactory
+                .newCameraPosition(cameraPosition));
+    }
+
+
+
 }
