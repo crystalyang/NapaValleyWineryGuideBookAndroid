@@ -8,30 +8,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class ReviewListActivity extends AppCompatActivity {
-    boolean isMyRev = false;
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent i = getIntent();
+        id = i.getStringExtra("id");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_list);
 
-        Bundle extras = getIntent().getExtras();
-        if(extras !=null){
-            isMyRev =extras.getBoolean("isMyRev");
-        }
-
-
+        // TODO add async task to get review list && add recycler view for displaying
     }
 
     //add menu bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_action_bar,menu);
-        if(isMyRev) {
-            MenuItem item = menu.findItem(R.id.action_add);
-            item.setVisible(false);
-            this.invalidateOptionsMenu();
-        }
+//        if(isMyRev) {
+//            MenuItem item = menu.findItem(R.id.action_add);
+//            item.setVisible(false);
+//            this.invalidateOptionsMenu();
+//        }
         return true;
     }
 

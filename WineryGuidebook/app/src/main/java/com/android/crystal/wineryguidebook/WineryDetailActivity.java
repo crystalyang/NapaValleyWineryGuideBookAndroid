@@ -62,5 +62,16 @@ public class WineryDetailActivity extends Activity {
                 }
             });
         }
+
+        final Button review = (Button) findViewById(R.id.btnReview);
+        if(review != null){
+            review.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View v){
+                    Intent i = new Intent(v.getContext(),ReviewListActivity.class);
+                    i.putExtra("id",id);
+                    startActivity(i);
+                }
+            });
+        }
     }
 }
