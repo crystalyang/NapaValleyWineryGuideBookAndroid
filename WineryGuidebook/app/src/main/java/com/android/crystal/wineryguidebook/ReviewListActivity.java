@@ -8,6 +8,8 @@ import android.os.AsyncTask;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,6 +18,10 @@ import java.util.List;
 
 public class ReviewListActivity extends AppCompatActivity {
     String id;
+    private final String TAG = getClass().getSimpleName();
+    protected RecyclerView mRecyclerView;
+    protected RecyclerView.LayoutManager mLayoutManager;
+    private ReviewRecyclerViewAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +29,10 @@ public class ReviewListActivity extends AppCompatActivity {
         id = i.getStringExtra("id");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_list);
+
+        mRecyclerView = (RecyclerView) this.findViewById(R.id.reviewRecyclerView);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
         // TODO add async task to get review list && add recycler view for displaying
 //        getReviews task = new getWineries(getActivity(),id);
@@ -90,13 +100,13 @@ public class ReviewListActivity extends AppCompatActivity {
             if (dialog.isShowing()) {
                 dialog.dismiss();
             }
-//            if(result!=null){
-//
-//                for(TaskListener tl : myListeners){
-//                    tl.onResultAvailable(result);
-//                }
-//                myListeners.clear();
-//            }
+            if(result.size()>0){
+                mAdapter = new ReviewRecyclerViewAdapter(result,result.size());
+                mRecyclerView.setAdapter(mAdapter);
+
+            }
+
+
 
         }
         @Override
