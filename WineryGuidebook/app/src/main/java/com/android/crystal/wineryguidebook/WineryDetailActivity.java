@@ -1,6 +1,5 @@
 package com.android.crystal.wineryguidebook;
 
-import android.*;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -57,7 +56,6 @@ public class WineryDetailActivity extends Activity {
                     }else {
                         // TODO: causing crash; fix this later
                         startActivity(callIntent);
-
                     }
                 }
             });

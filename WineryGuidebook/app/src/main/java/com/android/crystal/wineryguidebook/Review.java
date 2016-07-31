@@ -24,8 +24,6 @@ public class Review {
             result.setRate(pontoFeferencia.getString("rating"));
             result.setAuthorName(pontoFeferencia.getString("author_name"));
             result.setText(pontoFeferencia.getString("text"));
-
-
             return result;
         } catch (JSONException ex) {
 

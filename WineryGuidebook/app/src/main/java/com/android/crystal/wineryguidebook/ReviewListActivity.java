@@ -14,9 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class ReviewListActivity extends AppCompatActivity {
+public class ReviewListActivity extends Activity {
     String id;
     private final String TAG = getClass().getSimpleName();
     protected RecyclerView mRecyclerView;
@@ -34,24 +33,14 @@ public class ReviewListActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // TODO add async task to get review list && add recycler view for displaying
-//        getReviews task = new getWineries(getActivity(),id);
-//        task.addListener(this);
-//        task.execute();
         getReviews task = new getReviews(this,id);
         task.execute();
-
     }
 
     //add menu bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_action_bar,menu);
-//        if(isMyRev) {
-//            MenuItem item = menu.findItem(R.id.action_add);
-//            item.setVisible(false);
-//            this.invalidateOptionsMenu();
-//        }
         return true;
     }
 
@@ -66,10 +55,6 @@ public class ReviewListActivity extends AppCompatActivity {
             case R.id.action_back:
                 startActivity(new Intent(this,MainActivity.class)); //back to main activity
                 return true;
-//            case R.id.action_add:
-//                startActivity(new Intent(this,AddReviewActivity.class)); //to do: create AddReviewAcitivity
-//                //i.putExtra(); to do add winery id here
-//                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -77,17 +62,7 @@ public class ReviewListActivity extends AppCompatActivity {
     public class getReviews  extends AsyncTask<String, String,  ArrayList<Review>> {
         private ProgressDialog dialog;
         private Context context;
-//        private List<TaskListener> myListeners = new ArrayList<TaskListener>();
         private String wineryId;
-
-
-//        public interface TaskListener{
-//            public void onResultAvailable(ArrayList<Review> result);
-//        }
-
-//        public void addListener(TaskListener tl){
-//            myListeners.add(tl);
-//        }
 
         public getReviews(Activity context, String wineryId){
             this.context = context;
@@ -103,12 +78,9 @@ public class ReviewListActivity extends AppCompatActivity {
             if(result.size()>0){
                 mAdapter = new ReviewRecyclerViewAdapter(result,result.size());
                 mRecyclerView.setAdapter(mAdapter);
-
             }
-
-
-
         }
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -117,17 +89,14 @@ public class ReviewListActivity extends AppCompatActivity {
             dialog.setMessage("Getting reviews..");
             dialog.isIndeterminate();
             dialog.show();
-
         }
+
         @Override
         protected ArrayList<Review> doInBackground(String... arg0) {
             ReviewService service = new ReviewService();
             ArrayList<Review> ReviewList = service.getReviews(wineryId);
-
             return ReviewList;
         }
-
     }
-
 }
 

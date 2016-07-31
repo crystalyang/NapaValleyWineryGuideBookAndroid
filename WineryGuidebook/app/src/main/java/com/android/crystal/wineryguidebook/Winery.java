@@ -101,7 +101,6 @@ public class Winery implements Comparator<Winery>, Parcelable{
         public Winery createFromParcel(Parcel in) {
             return new Winery(in);
         }
-
         public Winery[] newArray(int size) {
             return new Winery[size];
         }

@@ -27,7 +27,6 @@ public class ReviewService {
         try{
             String json = getJSON(urlString);
             System.out.println(json); // for log purpose
-            //deserialize into arraylist of winery
             JSONObject object = new JSONObject(json);
             JSONObject item = object.getJSONObject("result");
             JSONArray array = item.getJSONArray("reviews");
@@ -56,7 +55,6 @@ public class ReviewService {
                 //https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJ68MGgSSshYARiJdUvYSx6kY&key=AIzaSyAy1kwW3Ja8NkKBCrMftJsrHwP7-IxtJ4U
                "https://maps.googleapis.com/maps/api/place/details/json?"
         );
-        //fixed type to "winery" to search winery aroung Nape valley
         urlString.append("placeid=");
         urlString.append(wineryId);
         urlString.append("&key="+API_KEY);

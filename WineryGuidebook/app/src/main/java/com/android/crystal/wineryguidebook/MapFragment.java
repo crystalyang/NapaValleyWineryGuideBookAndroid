@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.AutocompleteFilter;
 import com.google.android.gms.location.places.Place;
@@ -27,8 +26,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,8 +50,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, getWine
 
 
         PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment) getActivity().getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
-        List<Integer> filters = new ArrayList<Integer>();
-        filters.add(Place.TYPE_POINT_OF_INTEREST);
+//        List<Integer> filters = new ArrayList<Integer>();
+//        filters.add(Place.TYPE_POINT_OF_INTEREST);
         AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
                 .setTypeFilter(AutocompleteFilter.TYPE_FILTER_ESTABLISHMENT)
                 .build();
@@ -62,15 +59,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, getWine
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-                // TODO: Get info about the selected place.
-//                Winery selected = new Winery();
-//                selected.setId(place.getId());
-//                selected.setRate(Float.toString(place.getRating()));
-//                selected.setVicinity(place.getAddress().toString());
-//                selected.setName(place.getName().toString());
-//                selected.setPhone(place.getPhoneNumber().toString());
-//                selected.setLongitude(place.getLatLng().longitude);
-//                selected.setLatitude(place.getLatLng().latitude);
 
                 Intent i = new Intent(getActivity(),WineryDetailActivity.class);
                 i.putExtra("id",place.getId());
@@ -105,7 +93,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, getWine
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onActivityCreated(savedInstanceState);
 
 
@@ -134,7 +121,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, getWine
     public void setDataList(ArrayList<Winery> result){
         wineryList = result;
         for (int i = 0; i < wineryList.size(); i++) {
-            //String cafeName = wineryList.get(i).getName();
 
             mMapView.addMarker(new MarkerOptions()
                     .title(wineryList.get(i).getName())
@@ -154,7 +140,4 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, getWine
         mMapView.animateCamera(CameraUpdateFactory
                 .newCameraPosition(cameraPosition));
     }
-
-
-
 }

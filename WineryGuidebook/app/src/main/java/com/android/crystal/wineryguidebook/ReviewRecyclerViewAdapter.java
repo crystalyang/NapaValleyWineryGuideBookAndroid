@@ -1,6 +1,5 @@
 package com.android.crystal.wineryguidebook;
 
-import android.support.v4.app.RemoteInput;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Created by Crystal on 7/30/16.
@@ -18,13 +16,6 @@ public class ReviewRecyclerViewAdapter extends  RecyclerView.Adapter<ReviewRecyc
     private int Size;
 
     public ReviewRecyclerViewAdapter(ArrayList<Review> itemsData, int size) {
-      //  Collections.sort(itemsData,new Review());
-//        ArrayList<Review> list = new ArrayList<Review>();
-//        for(int i=itemsData.size()-1 ; i!=0; i--){
-//
-//            list.add(itemsData.get(i));
-//        }
-
         this.reviewList = itemsData;
         this.Size = size;
     }

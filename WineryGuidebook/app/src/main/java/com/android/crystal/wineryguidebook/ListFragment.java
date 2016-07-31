@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -67,7 +66,6 @@ public class ListFragment extends Fragment implements getWineries.TaskListener {
         Size = result.size();
         mAdapter = new RecyclerViewAdapter(wineryList,Size);
         mRecyclerView.setAdapter(mAdapter);
-
     }
 
 

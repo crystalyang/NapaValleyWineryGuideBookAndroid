@@ -32,7 +32,6 @@ public class getWineries extends AsyncTask<String, String,  ArrayList<Winery>> {
 
     public getWineries(Activity context){
         this.context = context;
-
     }
 
     @Override
@@ -48,15 +47,6 @@ public class getWineries extends AsyncTask<String, String,  ArrayList<Winery>> {
             }
             myListeners.clear();
         }
-
-//            Bundle bundle = new Bundle();
-//            bundle.putParcelableArrayList("WineryList", result);
-//            viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()),bundle);
-//            cafesList = result;
-//            Size = result.size();
-//
-//            mAdapter = new RecyclerViewAdapter(cafesList,Size);
-//            mRecyclerView.setAdapter(mAdapter);
     }
     @Override
     protected void onPreExecute() {
