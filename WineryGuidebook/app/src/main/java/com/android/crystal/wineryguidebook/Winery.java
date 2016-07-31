@@ -51,6 +51,7 @@ public class Winery implements Comparator<Winery>, Parcelable{
             result.setName(pontoFeferencia.getString("name"));
             result.setVicinity(pontoFeferencia.getString("vicinity"));
             result.setId(pontoFeferencia.getString("id"));
+           // result.setPhone(pontoFeferencia.getString(""));
             if(pontoFeferencia.has("rating")) {
                 result.setRate(pontoFeferencia.getString("rating"));
             }else{

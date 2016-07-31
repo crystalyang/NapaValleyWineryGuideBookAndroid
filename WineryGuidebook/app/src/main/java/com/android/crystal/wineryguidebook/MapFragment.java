@@ -23,6 +23,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MapFragment extends Fragment implements OnMapReadyCallback, getWineries.TaskListener {
+public class MapFragment extends Fragment implements OnMapReadyCallback, getWineries.TaskListener, GoogleMap.OnInfoWindowClickListener {
     private final String TAG = getClass().getSimpleName();
     private GoogleMap mMapView;
     private SupportMapFragment fragment;
@@ -40,7 +41,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, getWine
     public MapFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -107,11 +107,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, getWine
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMapView = googleMap;
-        LatLng current = new LatLng(37.3355457, -121.882949);
-        mMapView.addMarker(new MarkerOptions().position(current).title("current location"));
-        mMapView.moveCamera(CameraUpdateFactory.newLatLng(current));
+      mMapView = googleMap;
+//        LatLng current = new LatLng(37.3355457, -121.882949);
+//        mMapView.addMarker(new MarkerOptions().position(current).title("current location"));
+//        mMapView.moveCamera(CameraUpdateFactory.newLatLng(current));
+        mMapView.setOnInfoWindowClickListener(this);
     }
+
+
 
     @Override
     public void onResultAvailable(ArrayList<Winery> result){
@@ -139,5 +142,24 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, getWine
                 .build();
         mMapView.animateCamera(CameraUpdateFactory
                 .newCameraPosition(cameraPosition));
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+
+        String t = marker.getId();
+        String ts = t.substring(1,t.length());
+        int ind = Integer.parseInt(ts);
+
+
+        Intent i = new Intent(getActivity(),WineryDetailActivity.class);
+        i.putExtra("id",wineryList.get(ind).getId());
+        i.putExtra("rate",Double.toString(wineryList.get(ind).getRate()));
+        i.putExtra("name",wineryList.get(ind).getName());
+        i.putExtra("address",wineryList.get(ind).getVicinity());
+        i.putExtra("phone", wineryList.get(ind).getPhone());
+        startActivity(i);
+
+        System.out.print(ts);
     }
 }
