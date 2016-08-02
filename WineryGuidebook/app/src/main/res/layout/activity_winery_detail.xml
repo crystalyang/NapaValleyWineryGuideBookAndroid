@@ -16,33 +16,62 @@
         android:text="Large Text"
         android:id="@+id/txtName"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-condensed"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:fontFamily="sans-serif-thin"
+        android:layout_toRightOf="@+id/txtName"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/txtRate" />
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
+        android:fontFamily="sans-serif-thin"
         android:id="@+id/txtAddress"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/txtName"
-        android:layout_alignRight="@+id/txtName"
-        android:layout_alignEnd="@+id/txtName" />
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Brief description:"
+        android:id="@+id/txttxt"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txtAddress"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Read Reviews"
+        android:text="Reviews"
         android:id="@+id/btnReview"
+        android:fontFamily="sans-serif-light"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/txtName"
-        android:layout_toStartOf="@+id/txtName" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Call"
         android:id="@+id/btnCall"
+        android:fontFamily="sans-serif-light"
         android:layout_alignTop="@+id/btnReview"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
@@ -51,21 +80,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="Castello di Amorosa is a castle and a winery located near Calistoga, California. First opening its doors to the public in April 2007, the castle is the pet project of 4th generation vintner, Dario Sattui, who also owns and operates the V. Sattui Winery named after his great-grandfather who originally established a winery in San Francisco in 1885 after emigrating from Italy to California . "
         android:id="@+id/txtDesc"
         android:layout_marginTop="86dp"
         android:layout_below="@+id/txtAddress"
-        android:layout_alignLeft="@+id/txtName"
-        android:layout_alignStart="@+id/txtName" />
+        android:fontFamily="sans-serif-medium" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/txtRate"
-        android:layout_below="@+id/txtName"
-        android:layout_alignLeft="@+id/btnCall"
-        android:layout_alignStart="@+id/btnCall" />
+
 
 </RelativeLayout>

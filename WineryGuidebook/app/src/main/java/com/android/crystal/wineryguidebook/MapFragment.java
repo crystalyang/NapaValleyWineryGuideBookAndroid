@@ -137,7 +137,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, getWine
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(new LatLng(result.get(0).getLatitude(), result
                         .get(0).getLongitude()))
-                .zoom(14)
+                .zoom(10)
                 .tilt(30)
                 .build();
         mMapView.animateCamera(CameraUpdateFactory

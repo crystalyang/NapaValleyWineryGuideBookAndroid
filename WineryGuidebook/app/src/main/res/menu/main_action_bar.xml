@@ -7,10 +7,6 @@
         android:icon="@mipmap/ic_launcher"
         app:showAsAction="always|withText" />
 
-    <item
-        android:id="@+id/action_add"
-        android:title="add"
-        android:icon="@mipmap/ic_launcher"
-        app:showAsAction="always|withText" />
+
 
 </menu>

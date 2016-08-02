@@ -20,7 +20,7 @@ public class getWineries extends AsyncTask<String, String,  ArrayList<Winery>> {
     private ProgressDialog dialog;
     private Context context;
     private List<TaskListener> myListeners = new ArrayList<TaskListener>();
-    private LatLng currentLoc = new LatLng(38.2891543, -122.3763611);
+    private LatLng currentLoc = new LatLng(38.441401, -122.390734);
 
     public interface TaskListener{
         public void onResultAvailable(ArrayList<Winery> result);

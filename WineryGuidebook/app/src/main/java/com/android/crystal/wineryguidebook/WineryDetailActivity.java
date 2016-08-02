@@ -48,7 +48,7 @@ public class WineryDetailActivity extends Activity {
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Intent callIntent = new Intent(Intent.ACTION_CALL);
-                    callIntent.setData(Uri.parse("tel" + phone));
+                    callIntent.setData(Uri.parse("tel:" + phone));
 
                     if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                         requestPermissions(new String[] {Manifest.permission.CALL_PHONE},MY_PERMISSIONS_REQUEST_CALL_PHONE);
@@ -71,5 +71,7 @@ public class WineryDetailActivity extends Activity {
                 }
             });
         }
+
+
     }
 }
